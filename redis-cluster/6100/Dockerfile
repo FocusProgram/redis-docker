@@ -13,6 +13,4 @@ EXPOSE 6100
 # EXPOSE 16381
 
 # 启动redis服务
-#CMD [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
-
-ENTRYPOINT ["sh","./entrypoint.sh"]
+CMD [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
