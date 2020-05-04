@@ -5,9 +5,42 @@
 ---
 
 - **文章目录**
-[TOCM]
 
-[TOC]
+* [1\. redis是什么？](#1-redis%E6%98%AF%E4%BB%80%E4%B9%88)
+* [2\. 安装部署](#2-%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2)
+  * [2\.1 编译安装](#21-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85)
+  * [2\.2 docker安装](#22-docker%E5%AE%89%E8%A3%85)
+* [3\. redis 持久化](#3-redis-%E6%8C%81%E4%B9%85%E5%8C%96)
+  * [3\.1 RDB](#31-rdb)
+  * [3\.2 AOF](#32-aof)
+* [4\. redis 基础数据类型](#4-redis-%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B)
+  * [4\.1 string](#41-string)
+  * [4\.2 list](#42-list)
+  * [4\.3 set](#43-set)
+  * [4\.4 zset](#44-zset)
+  * [4\.5 hash](#45-hash)
+* [5\. redis 常用操作](#5-redis-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C)
+  * [5\.1 string](#51-string)
+  * [5\.2 list](#52-list)
+  * [5\.3 set](#53-set)
+  * [5\.4 zset](#54-zset)
+  * [5\.5 hash](#55-hash)
+* [6\. redis操作键值](#6-redis%E6%93%8D%E4%BD%9C%E9%94%AE%E5%80%BC)
+* [7\. redis 安全设置](#7-redis-%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE)
+  * [7\.1 设置监听ip](#71-%E8%AE%BE%E7%BD%AE%E7%9B%91%E5%90%ACip)
+  * [7\.2 设置监听端口](#72-%E8%AE%BE%E7%BD%AE%E7%9B%91%E5%90%AC%E7%AB%AF%E5%8F%A3)
+  * [7\.3 设置密码](#73-%E8%AE%BE%E7%BD%AE%E5%AF%86%E7%A0%81)
+  * [7\.4 把redis命令行里面的config命令改名](#74-%E6%8A%8Aredis%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%87%8C%E9%9D%A2%E7%9A%84config%E5%91%BD%E4%BB%A4%E6%94%B9%E5%90%8D)
+* [8\. redis 慢查询日志](#8-redis-%E6%85%A2%E6%9F%A5%E8%AF%A2%E6%97%A5%E5%BF%97)
+* [9\. redis 集群](#9-redis-%E9%9B%86%E7%BE%A4)
+  * [9\.1 集群特点](#91-%E9%9B%86%E7%BE%A4%E7%89%B9%E7%82%B9)
+  * [9\.2 redis集群模式](#92-redis%E9%9B%86%E7%BE%A4%E6%A8%A1%E5%BC%8F)
+  * [9\.3 主从模式](#93-%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F)
+  * [9\.4 sentinel模式](#94-sentinel%E6%A8%A1%E5%BC%8F)
+  * [9\.5 cluster模式](#95-cluster%E6%A8%A1%E5%BC%8F)
+* [10\. redis常见问题](#10-redis%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)
+  * [10\.1 redis穿透](#101-redis%E7%A9%BF%E9%80%8F)
+  * [10\.2 redis雪崩](#102-redis%E9%9B%AA%E5%B4%A9)
 
 # 1. redis是什么？
 
