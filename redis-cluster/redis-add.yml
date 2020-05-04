@@ -1,0 +1,44 @@
+version: '3'
+services:
+  redis-cluster-seven:
+    hostname: redis-cluster-seven
+    container_name: redis-cluster-seven
+    build: ./6700
+    volumes:
+     - /data/redis-cluster/6700:/data
+     - /etc/localtime:/etc/localtime
+     - /etc/timezone:/etc/timezone
+    ports:
+     - 6700:6700
+    networks:
+      default:
+        ipv4_address: 172.20.0.8
+    environment:
+      - SET_CONTAINER_TIMEZONE=true
+      - CONTAINER_TIMEZONE=Asia/Shanghai
+    privileged: true
+    restart: always
+    
+  redis-cluster-eight:
+    hostname: redis-cluster-eight
+    container_name: redis-cluster-eight
+    build: ./6800
+    volumes:
+     - /data/redis-cluster/6200:/data
+     - /etc/localtime:/etc/localtime
+     - /etc/timezone:/etc/timezone
+    ports:
+     - 6800:6800
+    networks:
+      default:
+        ipv4_address: 172.20.0.9
+    environment:
+      - SET_CONTAINER_TIMEZONE=true
+      - CONTAINER_TIMEZONE=Asia/Shanghai
+    privileged: true
+    restart: always
+    
+networks:
+  default:
+    external:
+      name: redisnetwork

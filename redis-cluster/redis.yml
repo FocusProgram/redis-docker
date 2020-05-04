@@ -1,0 +1,126 @@
+version: '3'
+services:
+  redis-cluster-one:
+    hostname: redis-cluster-one
+    container_name: redis-cluster-one
+    build: ./6100
+    volumes:
+     - /data/redis-cluster/6100:/data
+     - /etc/localtime:/etc/localtime
+     - /etc/timezone:/etc/timezone
+    ports:
+     - 6100:6100
+    networks:
+      default:
+        ipv4_address: 172.20.0.2
+    restart: always
+    environment:
+      - SET_CONTAINER_TIMEZONE=true
+      - CONTAINER_TIMEZONE=Asia/Shanghai
+    privileged: true
+    restart: always
+    
+  redis-cluster-two:
+    hostname: redis-cluster-two
+    container_name: redis-cluster-two
+    build: ./6200
+    volumes:
+     - /data/redis-cluster/6200:/data
+     - /etc/localtime:/etc/localtime
+     - /etc/timezone:/etc/timezone
+    ports:
+     - 6200:6200
+    networks:
+      default:
+        ipv4_address: 172.20.0.3
+    restart: always
+    environment:
+      - SET_CONTAINER_TIMEZONE=true
+      - CONTAINER_TIMEZONE=Asia/Shanghai
+    privileged: true
+    restart: always
+    
+  redis-cluster-three:
+    hostname: redis-cluster-three
+    container_name: redis-cluster-three
+    build: ./6300
+    volumes:
+     - /data/redis-cluster/6300:/data
+     - /etc/localtime:/etc/localtime
+     - /etc/timezone:/etc/timezone
+    ports:
+     - 6300:6300
+    networks:
+      default:
+        ipv4_address: 172.20.0.4
+    restart: always
+    environment:
+      - SET_CONTAINER_TIMEZONE=true
+      - CONTAINER_TIMEZONE=Asia/Shanghai
+    privileged: true
+    restart: always
+
+  redis-cluster-four:
+    hostname: redis-cluster-four
+    container_name: redis-cluster-four
+    build: ./6400
+    volumes:
+     - /data/redis-cluster/6400:/data
+     - /etc/localtime:/etc/localtime
+     - /etc/timezone:/etc/timezone
+    ports:
+     - 6400:6400
+    networks:
+      default:
+        ipv4_address: 172.20.0.5
+    restart: always
+    environment:
+      - SET_CONTAINER_TIMEZONE=true
+      - CONTAINER_TIMEZONE=Asia/Shanghai
+    privileged: true
+    restart: always
+
+  redis-cluster-five:
+    hostname: redis-cluster-five
+    container_name: redis-cluster-five
+    build: ./6500
+    volumes:
+     - /data/redis-cluster/6500:/data
+     - /etc/localtime:/etc/localtime
+     - /etc/timezone:/etc/timezone
+    ports:
+     - 6500:6500
+    networks:
+      default:
+        ipv4_address: 172.20.0.6
+    restart: always
+    environment:
+      - SET_CONTAINER_TIMEZONE=true
+      - CONTAINER_TIMEZONE=Asia/Shanghai
+    privileged: true
+    restart: always
+
+  redis-cluster-six:
+    hostname: redis-cluster-six
+    container_name: redis-cluster-six
+    build: ./6600
+    volumes:
+     - /data/redis-cluster/6600:/data
+     - /etc/localtime:/etc/localtime
+     - /etc/timezone:/etc/timezone
+    ports:
+     - 6600:6600
+    networks:
+      default:
+        ipv4_address: 172.20.0.7
+    restart: always
+    environment:
+      - SET_CONTAINER_TIMEZONE=true
+      - CONTAINER_TIMEZONE=Asia/Shanghai
+    privileged: true
+    restart: always
+    
+networks:
+  default:
+    external:
+      name: redisnetwork

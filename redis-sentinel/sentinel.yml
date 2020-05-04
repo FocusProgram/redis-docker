@@ -1,0 +1,72 @@
+version: '3'
+services:
+  sentinel-26379:
+    image: redis
+    container_name: redis-sentinel-26379
+    ports:
+      - 26379:26379
+    networks:
+      default:
+        ipv4_address: 172.20.0.8
+    command: redis-sentinel /usr/local/etc/redis/sentinel.conf
+    volumes:
+      #- ./sentinel1.conf:/usr/local/etc/redis/sentinel.conf
+      - ./sentinel-26379.conf:/usr/local/etc/redis/sentinel.conf
+      - /data/redis-sentinel/7100:/data
+      - /data/redis-sentinel/7100/sentinel.logs:/usr/local/etc/redis/sentinel.logs
+      - /etc/localtime:/etc/localtime
+      - /etc/timezone:/etc/timezone
+    restart: always
+    environment:
+      - SET_CONTAINER_TIMEZONE=true
+      - CONTAINER_TIMEZONE=Asia/Shanghai
+    privileged: true
+
+  sentinel-26380:
+    image: redis
+    container_name: redis-sentinel-26380
+    ports:
+      - 26380:26380
+    networks:
+      default:
+        ipv4_address: 172.20.0.9
+    command: redis-sentinel /usr/local/etc/redis/sentinel.conf
+    volumes:
+      #- ./sentinel2.conf:/usr/local/etc/redis/sentinel.conf
+      - ./sentinel-26380.conf:/usr/local/etc/redis/sentinel.conf
+      - /data/redis-sentinel/7200:/data
+      - /data/redis-sentinel/7200/sentinel.logs:/usr/local/etc/redis/sentinel.logs
+      - /etc/localtime:/etc/localtime
+      - /etc/timezone:/etc/timezone
+    restart: always
+    environment:
+      - SET_CONTAINER_TIMEZONE=true
+      - CONTAINER_TIMEZONE=Asia/Shanghai
+    privileged: true
+
+  sentinel-26381:
+    image: redis
+    container_name: redis-sentinel-26381
+    ports:
+      - 26381:26381
+    networks:
+      default:
+        ipv4_address: 172.20.0.10
+    command: redis-sentinel /usr/local/etc/redis/sentinel.conf
+    volumes:
+      #- ./sentinel3.conf:/usr/local/etc/redis/sentinel.conf
+      - ./sentinel-26381.conf:/usr/local/etc/redis/sentinel.conf
+      - /data/redis-sentinel/7300:/data
+      - /data/redis-sentinel/7300/sentinel.logs:/usr/local/etc/redis/sentinel.logs
+      - /etc/localtime:/etc/localtime
+      - /etc/timezone:/etc/timezone
+    restart: always
+    environment:
+      - SET_CONTAINER_TIMEZONE=true
+      - CONTAINER_TIMEZONE=Asia/Shanghai
+    privileged: true
+  
+networks:
+  default:
+    external:
+      name: redisnetwork

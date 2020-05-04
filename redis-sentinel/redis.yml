@@ -1,0 +1,69 @@
+version: '3'
+services:
+  redis-sentinel-one:
+    hostname: redis-sentinel-one
+    container_name: redis-sentinel-one
+    build: ./7100
+    volumes:
+     - /data/redis-sentinel/7100:/data
+     - /data/redis-sentinel/7100/sentinel.logs:/usr/local/etc/redis/sentinel.logs
+     - /etc/localtime:/etc/localtime
+     - /etc/timezone:/etc/timezone
+    ports:
+     - 7100:7100
+     - 26379:26379
+    networks:
+      default:
+        ipv4_address: 172.20.0.5
+    environment:
+      - SET_CONTAINER_TIMEZONE=true
+      - CONTAINER_TIMEZONE=Asia/Shanghai
+    privileged: true
+    restart: always
+    
+  redis-sentinel-two:
+    hostname: redis-sentinel-two
+    container_name: redis-sentinel-two
+    build: ./7200
+    volumes:
+     - /data/redis-sentinel/7200:/data
+     - /data/redis-sentinel/7100/sentinel.logs:/usr/local/etc/redis/sentinel.logs
+     - /etc/localtime:/etc/localtime
+     - /etc/timezone:/etc/timezone
+    ports:
+     - 7200:7200
+     - 26380:26380
+    networks:
+      default:
+        ipv4_address: 172.20.0.6
+    environment:
+      - SET_CONTAINER_TIMEZONE=true
+      - CONTAINER_TIMEZONE=Asia/Shanghai
+    privileged: true
+    restart: always
+  
+  redis-sentinel-three:
+    hostname: redis-sentinel-three
+    container_name: redis-sentinel-three
+    build: ./7300
+    volumes:
+     - /data/redis-sentinel/7300:/data
+     - /data/redis-sentinel/7100/sentinel.logs:/usr/local/etc/redis/sentinel.logs
+     - /etc/localtime:/etc/localtime
+     - /etc/timezone:/etc/timezone
+    ports:
+     - 7300:7300
+     - 26381:26381
+    networks:
+      default:
+        ipv4_address: 172.20.0.7
+    environment:
+      - SET_CONTAINER_TIMEZONE=true
+      - CONTAINER_TIMEZONE=Asia/Shanghai
+    privileged: true
+    restart: always
+
+networks:
+  default:
+    external:
+      name: redisnetwork

@@ -1,0 +1,42 @@
+# 创建集群
+redis-cli -a root --cluster create 172.20.0.2:6100 172.20.0.3:6200 172.20.0.4:6300 172.20.0.5:6400 172.20.0.6:6500 172.20.0.7:6600 --cluster-replicas 1
+
+出现错误 Node 172.20.0.2:6100 is not empty. Either the node already knows other nodes (check with CLUSTER NODES) or contains some key in database 0.
+
+解决方法：
+
+1)、将需要新增的节点下aof、rdb等本地备份文件删除；
+
+2)、同时将新Node的集群配置文件删除,即：删除你redis.conf里面cluster-config-file所在的文件；
+
+3)、再次添加新节点如果还是报错，则登录新Node,./redis-cli–h x –p对数据库进行清除：
+
+4)、flushdb      #清空当前数据库
+
+# 查看集群状态
+
+cluster info
+
+# 列出集群节点信息
+
+cluster nodes
+
+# 集群增加节点
+
+cluster meet 172.20.0.8 6700
+
+# 将新增的172.20.0.8:6700节点身份改为172.20.0.9:6800的slave
+
+redis-cli -c -h 172.20.0.8 -p 6700 -a root cluster replicate a311aae44e347fdf5b1928094c2ca69f2151f6df
+
+# 删除集群节点
+
+cluster forget a311aae44e347fdf5b1928094c2ca69f2151f6df
+
+# 将节点配置信息保存到硬盘
+
+cluster saveconfig
+
+ 
+
+ 
