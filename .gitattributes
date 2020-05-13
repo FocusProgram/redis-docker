@@ -1,0 +1,3 @@
+*.js linguist-language=Docker
+*.css linguist-language=Docker
+*.html linguist-language=Docker
