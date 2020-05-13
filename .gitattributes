@@ -1,3 +1,3 @@
-*.js linguist-language=Docker
-*.css linguist-language=Docker
-*.html linguist-language=Docker
+*.conf linguist-language=Docker
+*.sh linguist-language=Docker
+*.yml linguist-language=Docker
